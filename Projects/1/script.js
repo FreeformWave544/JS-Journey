@@ -3,10 +3,66 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import gsap from 'gsap'
 import GUI from 'lil-gui'
-import { debug, metalness, roughness } from 'three/tsl'
+import { debug, materialClearcoatNormal, metalness, roughness, shininess } from 'three/tsl'
+import { HDRLoader, TextGeometry } from 'three/addons/Addons.js'
+import { FontLoader } from 'three/addons/loaders/FontLoader.js'
 
-
+const fontLoader = new FontLoader()
+fontLoader.load('/fonts/helvetiker_regular.typeface.json', (font) => {
+    const textGeometry = new TextGeometry('Rutlish Terminal', { 
+        font,
+        size: 0.5,
+        depth: 0.2,
+        curveSegments: 5,
+        bevelEnabled: true,
+        bevelThickness: 0.03,
+        bevelSize: 0.02,
+        bevelOffset: 0,
+        bevelSegments: 4
+    })
+    textGeometry.computeBoundingBox()
+    textGeometry.center()
+    textGeometry.translate(0, 0, 1.0)
+    const textMaterial = new THREE.MeshMatcapMaterial({ color: '#ec3750', matcap: matcapTexture })
+    const text = new THREE.Mesh(textGeometry, textMaterial)
+    scene.add(text)
+    const donutMesh = new THREE.TorusGeometry(0.3, 0.2, 20, 45)
+    const cubeMesh = new THREE.BoxGeometry(1, 1, 1, 1, 1)
+    const donutMaterial = new THREE.MeshMatcapMaterial({ matcap: donutMatcapTexture })
+    for (let i = 0; i < 500; i++) {
+        const donut = new THREE.Mesh(donutMesh, donutMaterial)
+        donut.position.set((Math.random() - 0.5) * 50, (Math.random() - 0.5) * 50, (Math.random() - 0.5) * 50)
+        donut.rotation.x = Math.random() * Math.PI
+        donut.rotation.y = Math.random() * Math.PI
+        var scale = Math.random()
+        donut.scale.set(scale, scale, scale)
+        scene.add(donut)
+        const cube = new THREE.Mesh(cubeMesh, donutMaterial)
+        cube.position.set((Math.random() - 0.5) * 50, (Math.random() - 0.5) * 10, (Math.random() - 0.5) * 50)
+        cube.rotation.x = Math.random() * Math.PI
+        cube.rotation.y = Math.random() * Math.PI
+        scale = Math.random()
+        cube.scale.set(scale, scale, scale)
+        scene.add(cube)
+    }
+    for (let i = 0; i < 50; i++) {
+        const donut = new THREE.Mesh(donutMesh, donutMaterial)
+        donut.position.set((Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10)
+        donut.rotation.x = Math.random() * Math.PI
+        donut.rotation.y = Math.random() * Math.PI
+        const scale = Math.random()
+        donut.scale.set(scale, scale, scale)
+        scene.add(donut)
+    }
+    // const edges = new THREE.EdgesGeometry(textGeometry);
+    // const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x000000 }));
+    // text.add(line);
+})
 const textureLoader = new THREE.TextureLoader()
+const matcapTexture = textureLoader.load('/textures/matcaps/5.png')
+matcapTexture.colorSpace = THREE.SRGBColorSpace
+const donutMatcapTexture = textureLoader.load('/textures/matcaps/8.png')
+donutMatcapTexture.colorSpace = THREE.SRGBColorSpace
 const texture = textureLoader.load('/Logo.png')
 const doorColorTexture = textureLoader.load('./textures/door/color.jpg')
 const doorAlphaTexture = textureLoader.load('./textures/door/alpha.jpg')
@@ -15,7 +71,6 @@ const doorHeightTexture = textureLoader.load('./textures/door/height.jpg')
 const doorNormalTexture = textureLoader.load('./textures/door/normal.jpg')
 const doorMetalnessTexture = textureLoader.load('./textures/door/metalness.jpg')
 const doorRoughnessTexture = textureLoader.load('./textures/door/roughness.jpg')
-const matcapTexture = textureLoader.load('./textures/matcaps/1.png')
 const gradientTexture = textureLoader.load('./textures/gradients/5.png')
 doorColorTexture.colorSpace = THREE.SRGBColorSpace
 matcapTexture.colorSpace = THREE.SRGBColorSpace
@@ -62,42 +117,79 @@ let positionsAttribute = new THREE.BufferAttribute(geometrySettings.positionsArr
 // geometry.setAttribute('position', positionsAttribute)
 
 debugObject.color = '#00ffff'
-// const material = new THREE.MeshPhongMaterial({ 
-//     // map: texture, 
-//     shininess: 100,
-//     specular: new THREE.Color('#f9faa8'),
-//     map: doorColorTexture, alphaMap: doorAlphaTexture, 
-//     side: THREE.DoubleSide})
+const material = new THREE.MeshPhongMaterial({ 
+    map: texture, 
+    shininess: 100,
+    specular: new THREE.Color('#f9faa8'),
+    side: THREE.DoubleSide
+})
+
+const materialGroup = gui.addFolder('Materials').close()
+gui.add(material, 'shininess', 0, 100, 0.1)
+gui.addColor(material, 'specular')
 
 // const material = new THREE.MeshToonMaterial()
 // gradientTexture.minFilter = THREE.NearestFilter
 // gradientTexture.magFilter = THREE.NearestFilter
 // gradientTexture.generateMipmaps = false
 
-const material = new THREE.MeshStandardMaterial()
-material.metalness = 0.45
-material.roughness = 0.65
+// const material = new THREE.MeshPhysicalMaterial()
+// material.metalness = 1.0
+// material.roughness = 1.0
+// material.map = doorColorTexture
+// material.aoMap = doorAmbientOccTexture
+// material.aoMapIntensity = 1
+// material.displacementMap = doorHeightTexture
+// material.displacementScale = 0.05
+// material.metalnessMap = doorMetalnessTexture
+// material.roughnessMap = doorRoughnessTexture
+// material.normalMap = doorNormalTexture
+// material.transparent = true
+// material.alphaMap = doorAlphaTexture
 
-const materialGroup = gui.addFolder('Materials')
-gui.add(material, 'metalness', 0, 1, 0.0001)
-gui.add(material, 'roughness', 0, 1, 0.0001)
+// material.iridescence = 1.0
+// material.iridescenceIOR = 1.0
+// material.iridescenceThicknessRange = [ 100, 800 ]
+// gui.add(material, 'iridescence', 0, 1, 0.0001)
+// gui.add(material, 'iridescenceIOR', 1, 2.333, 0.0001)
+// gui.add(material.iridescenceThicknessRange, '0', 1, 1000, 1)
+// gui.add(material.iridescenceThicknessRange, '1', 1, 1000, 1)
+
+// material.transmission = 1
+// material.ior = 1.5
+// material.thickness = 0.5
+// gui.add(material, 'transmission', 0, 1, 0.0001)
+// gui.add(material, 'ior', 1, 10, 0.0001)
+// gui.add(material, 'thickness', 0, 1, 0.0001)
+
+
+// const materialGroup = gui.addFolder('Materials')
+// gui.add(material, 'metalness', 0, 1, 0.0001)
+// gui.add(material, 'roughness', 0, 1, 0.0001)
 
 const mesh = new THREE.Mesh(geometry, material)
 mesh.position.y = 1.5
-const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16, 16), material)
+const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 64, 64), material)
 sphere.position.x = - 1.5
-const plane = new THREE.Mesh(new THREE.PlaneGeometry(1.0, 1.0), material)
-const torus = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.2, 16, 32), material)
+const plane = new THREE.Mesh(new THREE.PlaneGeometry(1.0, 1.0, 100, 100), material)
+const torus = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.2, 64, 128), material)
 torus.position.x = 1.5
 scene.add(sphere, plane, torus, mesh)
 
-const ambientLight = new THREE.AmbientLight('#ffffff', 1)
-scene.add(ambientLight)
-const pointLight = new THREE.PointLight('#ffffff', 30)
-pointLight.position.x = 2
-pointLight.position.y = 3
-pointLight.position.z = 4
-scene.add(pointLight)
+// const ambientLight = new THREE.AmbientLight('#ffffff', 1)
+// scene.add(ambientLight)
+// const pointLight = new THREE.PointLight('#ffffff', 30)
+// pointLight.position.x = 2
+// pointLight.position.y = 3
+// pointLight.position.z = 4
+// scene.add(pointLight)
+
+const hdrLoader = new HDRLoader
+hdrLoader.load('./textures/environmentMap/2k.hdr', (environmentMap) => { 
+    environmentMap.mapping = THREE.EquirectangularReflectionMapping
+    scene.background = environmentMap
+    scene.environment = environmentMap
+ })
 
 window.addEventListener('keypress', (e) => { if (e.key == "e" && geometry.type == "BufferGeometry") {
     for (let i = 0; i < geometrySettings.count * 3 * 3; i++) {
@@ -150,13 +242,14 @@ window.addEventListener('keypress', (e) => {
 
 
 const camera = new THREE.PerspectiveCamera(60, sizes.width / sizes.height, 0.001)
-camera.position.z = 3
+camera.position.z = 5
 scene.add(camera)
 
 const controls = new OrbitControls(camera, canvas)
 controls.enableDamping = true
 controls.enablePan = false
-controls.maxDistance = 3
+controls.maxDistance = 50
+gui.add( controls, 'maxDistance', 1, 50, 0.5 )
 controls.minDistance = 1
 
 const renderer = new THREE.WebGLRenderer({
