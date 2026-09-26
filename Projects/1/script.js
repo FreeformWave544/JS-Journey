@@ -17,18 +17,16 @@ const fontLoader = new FontLoader()
 
 
 
-const matcapTexture = textureLoader.load('/textures/matcaps/5.png')
+const matcapTexture = textureLoader.load('./textures/matcaps/5.png')
 matcapTexture.colorSpace = THREE.SRGBColorSpace
 
-const donutMatcapTexture = textureLoader.load('/textures/matcaps/8.png')
+const donutMatcapTexture = textureLoader.load('./textures/matcaps/8.png')
 donutMatcapTexture.colorSpace = THREE.SRGBColorSpace
 
-const logoTexture = textureLoader.load('/Logo.png')
+const logoTexture = textureLoader.load('./Logo.png')
 logoTexture.colorSpace = THREE.SRGBColorSpace
 
 const gradientTexture = textureLoader.load('./textures/gradients/5.png')
-
-
 
 const gui = new GUI({
     width: 150,
@@ -195,7 +193,7 @@ scene.add(
 
 
 fontLoader.load(
-    '/fonts/helvetiker_regular.typeface.json',
+    './fonts/helvetiker_regular.typeface.json',
     (font) =>
     {
         const textGeometry = new TextGeometry(
@@ -437,6 +435,7 @@ const controls = new OrbitControls(
     canvas
 )
 
+controls.mouseButtons.LEFT = null
 controls.enableDamping = true
 controls.enablePan = false
 controls.minDistance = 1.5
