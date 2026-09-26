@@ -5,6 +5,7 @@ import gsap from 'gsap'
 import GUI from 'lil-gui'
 import { HDRLoader, TextGeometry } from 'three/addons/Addons.js'
 import { FontLoader } from 'three/addons/loaders/FontLoader.js'
+import { time } from 'three/tsl'
 
 
 
@@ -68,19 +69,10 @@ window.addEventListener('mousemove', (event) =>
 
 
 const scrollIndicator = document.querySelector('#scroll-indicator')
-const scrollArrow = document.querySelector('#scroll-arrow')
-
-gsap.to(scrollArrow, {
-    y: -7,
-    duration: 0.8,
-    ease: 'power1.inOut',
-    repeat: -1,
-    yoyo: true
-})
 
 window.addEventListener('scroll', () =>
 {
-    if (window.scrollY > 50)
+    if (window.scrollY > 200)
     {
         gsap.to(scrollIndicator, {
             opacity: 0,
@@ -549,16 +541,11 @@ window.addEventListener(
     (event) =>
     {
         scrollY = window.scrollY
-
         const distance = controls.getDistance()
-
-        if (
-            distance >= controls.maxDistance ||
-            distance <= controls.minDistance
-        )
-        {
-            controls.enableZoom = false
-        }
+        if (distance >= controls.maxDistance || distance <= controls.minDistance) { controls.enableZoom = false }
+        document.getElementById('What').classList.remove("hidden")
+        document.getElementById('Why').classList.remove("hidden")
+        document.getElementById('Club').classList.remove("hidden")
     },
     {
         passive: false
@@ -569,6 +556,7 @@ window.addEventListener(
 
 const clock = new THREE.Timer()
 
+let parallaxSpeed = 1.0
 const tick = (timestamp) =>
 {
     clock.update(timestamp)
@@ -593,16 +581,9 @@ const tick = (timestamp) =>
     const parallaxX = cursor.x * 0.5
     const parallaxY = cursor.y * 0.5
 
-    camera.position.x +=
-        (parallaxX - camera.position.x) *
-        5 *
-        delta
+    camera.position.x += (parallaxX - camera.position.x) * 5 * delta * parallaxSpeed
 
-    camera.position.y +=
-        (-parallaxY - camera.position.y) *
-        5 *
-        delta
-
+    camera.position.y += (-parallaxY - camera.position.y) * 5 * delta * parallaxSpeed
 
 
     controls.update()
@@ -618,3 +599,22 @@ const tick = (timestamp) =>
 }
 
 tick()
+
+document.getElementById('What').classList.add("hidden")
+document.getElementById('Why').classList.add("hidden")
+document.getElementById('Club').classList.add("hidden")
+
+parallaxSpeed = 0.1
+camera.position.y = -5000
+camera.position.z = 700
+camera.position.x = 700 * ((Math.random() - 0.5) * 2)
+
+const timer = setInterval(() => {
+    if (parallaxSpeed < 1.0) {
+        parallaxSpeed += 0.1;
+    } else {
+        parallaxSpeed = 1.0
+        clearInterval(timer)
+    }
+    
+}, 150);

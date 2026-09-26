@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home — Rutlish Terminal</title>
-  <script type="module" crossorigin src="./assets/index-CzLHdTSj.js"></script>
-  <link rel="modulepreload" crossorigin href="./assets/lil-gui.esm-BeAs9Q_U.js">
-  <link rel="stylesheet" crossorigin href="./assets/lil-gui-CYknPdNS.css">
+  <script type="module" crossorigin src="./assets/index-C6JR-g3s.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/lil-gui.esm-Ck1q_gd0.js">
+  <link rel="stylesheet" crossorigin href="./assets/lil-gui-DCIJfmti.css">
 </head>
 <body>
     <canvas class="webgl"></canvas>
@@ -15,7 +15,7 @@
         <img src="./TransLogo.png" alt="Home">
     </a>
 
-    <section class="section">
+    <section class="section" id="What">
         <p style="
             align-self: flex-start;
             color: rgba(255,255,255,0.5);
@@ -49,15 +49,16 @@
             We hope that hacker can be you.
         </p>
 
+    </section>
+    <section class="scroll" id="Scroll">
         <p id="scroll-indicator" style="
-            align-self: center;
-            color: rgb(255, 222, 222);
+        align-self: center;
+        color: rgb(177, 177, 177, 0.67);
         ">
-            <i><span id="scroll-arrow">↓</span> Scroll to explore</i>
+        <i>↓ Scroll to explore</i>
         </p>
     </section>
-
-    <section class="section">
+    <section class="section" id="Why">
         <p style="
             align-self: flex-end;
             color: rgba(255,255,255,0.5);
@@ -90,7 +91,7 @@
     </p>
     </section>
 
-    <section class="section">
+    <section class="section" id="Club">
         <p style="
             color: rgba(255,255,255,0.5);
             font-size: 0.7rem;
@@ -99,14 +100,40 @@
             03 / ACCESS
         </p>
 
-        <h2 style="
-            font-size: clamp(3rem, 7vw, 6rem);
-            font-weight: 800;
-        ">
+        <h2 class="club-heading" style="align-self: center; font-size: xx-large;">
             <a id="club-link" href="club.html">
-                Enter the Club →
+                <span>Enter the Club</span>
+                <span class="arrow">→</span>
             </a>
         </h2>
+
+        <style>
+
+            #club-link {
+                color: #fff;
+            }
+            #club-link::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -0.08em;
+                width: 100%;
+                height: 0.08em;
+                background: currentColor;
+                transform: scaleX(0);
+                transform-origin: right;
+                transition: transform 0.4s cubic-bezier(.77, 0, .18, 1);
+            }
+
+            #club-link:hover::after {
+                transform: scaleX(1);
+                transform-origin: left;
+            }
+            .arrow { display: inline-block; transition: transform 0.4s cubic-bezier(.77, 0, .18, 1); }
+            #club-link:hover .arrow { transform: translateX(0.25em); }
+            #club-link:hover { color: #b8ff5c; }
+        </style>
+
     </section>
 
 </body>
