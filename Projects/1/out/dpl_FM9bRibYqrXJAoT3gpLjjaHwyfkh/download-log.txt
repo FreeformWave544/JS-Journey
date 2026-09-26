@@ -1,0 +1,115 @@
+🔑 Got authentication token
+
+🔍 Fetching deployment info for: FM9bRibYqrXJAoT3gpLjjaHwyfkh
+   Resolving teams...
+   Trying FM9bRibYqrXJAoT3gpLjjaHwyfkh in personal account...
+   Trying dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh in personal account...
+✅ Got deployment info
+
+📦 Deployment ID:  dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh
+🌐 Deployment URL: js-journey-i87qwypii-wave-c4e6.vercel.app
+📁 Project:        js-journey
+
+📋 Fetching file tree from API...
+
+✅ Got file tree (10 top-level entries)
+
+📁 Output directory: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source
+
+🗑️  Clearing previous download...
+
+⬇️  Downloading files...
+   (Use --verbose to see detailed progress)
+
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\.vscode\settings.json
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\fonts\LICENSE.txt
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\fonts\helvetiker_regular.typeface.json
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\door\alpha.jpg
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\door\ambientOcclusion.jpg
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\door\color.jpg
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\door\height.jpg
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\door\metalness.jpg
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\door\normal.jpg
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\door\roughness.jpg
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\environmentMap\2k.hdr
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\gradients\3.jpg
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\gradients\5.jpg
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\matcaps\1.png
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\matcaps\2.png
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\matcaps\3.png
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\matcaps\4.png
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\matcaps\5.png
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\matcaps\6.png
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\matcaps\7.png
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\matcaps\8.png
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\LightLogo.png
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\Logo.png
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\TransLogo.png
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\calendar.html
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\club.html
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\club.js
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\index.html
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\package-lock.json
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\package.json
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\script.js
+✅ Downloaded: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\style.css
+
+🎉 All files processed successfully!
+
+📊 Running comparison...
+
+📁 Total files: 32
+   ✅ Downloaded: 32
+   ⏭️  Skipped: 0
+   ❌ Failed: 0
+💾 Total size: 8.21 MB
+
+📈 File types breakdown:
+   png               11 files
+   jpg                9 files
+   json               4 files
+   html               3 files
+   js                 2 files
+   txt                1 files
+   hdr                1 files
+   css                1 files
+
+🌳 File structure tree:
+
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\.vscode\settings.json
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\calendar.html
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\club.html
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\club.js
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\index.html
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\package-lock.json
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\package.json
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\fonts\helvetiker_regular.typeface.json
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\fonts\LICENSE.txt
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\LightLogo.png
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\Logo.png
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\door\alpha.jpg
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\door\ambientOcclusion.jpg
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\door\color.jpg
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\door\height.jpg
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\door\metalness.jpg
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\door\normal.jpg
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\door\roughness.jpg
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\environmentMap\2k.hdr
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\gradients\3.jpg
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\gradients\5.jpg
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\matcaps\1.png
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\matcaps\2.png
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\matcaps\3.png
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\matcaps\4.png
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\matcaps\5.png
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\matcaps\6.png
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\matcaps\7.png
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\textures\matcaps\8.png
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\public\TransLogo.png
+├── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\script.js
+└── 📄 C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\source\style.css
+
+✨ Download and verification complete!
+📄 Full log saved to: C:\Dev\ThreeJS\JS-Journey\Projects\1\out\dpl_FM9bRibYqrXJAoT3gpLjjaHwyfkh\download-log.txt
+   (Use --verbose to see file tree and skipped files)
+
