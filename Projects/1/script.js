@@ -536,22 +536,24 @@ renderer.setPixelRatio(
 
 let scrollY = window.scrollY
 
-window.addEventListener(
-    'wheel',
-    (event) =>
-    {
+const wheelListener = (event) => {
         scrollY = window.scrollY
         const distance = controls.getDistance()
         if (distance >= controls.maxDistance || distance <= controls.minDistance) { controls.enableZoom = false
             document.getElementById('What').classList.remove("hidden")
             document.getElementById('Why').classList.remove("hidden")
             document.getElementById('Club').classList.remove("hidden")
+            const timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
+            for (let i = 0; i < 40; i++) {
+            setTimeout(() => {
+                document.getElementById('overlay').style.backgroundColor = `rgba(${i}, ${40 - i}, 0, ${0.2 + (i / 400)})`;
+                document.getElementById('overlay').style.width = `${100 - (i / 1.2)}%`;
+            }, i * 15);
+            }
+            window.removeEventListener('wheel', wheelListener)
         }
-    },
-    {
-        passive: false
     }
-)
+window.addEventListener('wheel', wheelListener, { passive: false })
 
 
 
@@ -619,3 +621,15 @@ const timer = setInterval(() => {
     }
     
 }, 150);
+
+document.querySelectorAll(".link").forEach(link => {
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    document.body.classList.add("fade-out");
+
+    setTimeout(() => {
+      window.location.href = this.href;
+    }, 300);
+  });
+});
