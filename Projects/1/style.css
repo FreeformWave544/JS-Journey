@@ -7,6 +7,23 @@ html {
     font-family: 'Inter', sans-serif;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #8492a6;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ec3750;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ec3750;
+    border-radius: 10px;
+}
+
 .webgl {
     position: fixed;
     top: 0;
@@ -17,6 +34,13 @@ html {
     z-index: 0;
 }
 
+.content-container {
+    width: 80%;
+    height: calc(100vh - 50px);
+    margin-left: auto;
+    margin-right: auto;
+    pointer-events: all;
+}
 
 .section {
     pointer-events: none;
@@ -31,14 +55,14 @@ html {
 
 .section h1 {
     color: antiquewhite;
-    font-size: 2rem;
+    font-size: 4rem;
     font-weight: 200;
     letter-spacing: -0.05em;
 }
 
 .section h2 {
     color: aquamarine;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 150;
     letter-spacing: -0.03em;
     pointer-events: all;
@@ -46,7 +70,7 @@ html {
 }
 .section p {
     color: rgb(219, 255, 189);
-    font-size: 1rem;
+    font-size: 2rem;
     font-weight: 100;
     letter-spacing: -0.03em;
     pointer-events: all;
@@ -57,10 +81,16 @@ html {
     position: fixed;
     top: 24px;
     left: 24px;
-    width: 64px;
-    height: 64px;
+    width: 112px;
+    height: 112px;
     z-index: 100;
     transition: transform 0.3s ease;
+    outline: 2px solid #000;
+    outline-offset: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 5px 5px rgb(14, 189, 72);
 }
 
 .logo:hover {
@@ -69,15 +99,38 @@ html {
 
 
 .logo img {
-    width: 150%;
-    height: 150%;
+    width: 140%;
+    height: 140%;
     object-fit: contain;
 }
 
-section div a:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+/* .page-link-left {
+    color: #6c0286;
+    font-weight: 1000;
+    font-size: x-large;
+    box-shadow: 2px 5px #028639;
 }
+
+.page-link-left:hover {
+    color: #028639;
+    font-weight: 1000;
+    font-size: x-large;
+    box-shadow: 5px 10px #6c0286;
+}
+
+.page-link-right {
+    color: #6c0286;
+    font-weight: 1000;
+    font-size: x-large;
+    box-shadow: -2px 5px #028639;
+}
+
+.page-link-right:hover {
+    color: #028639;
+    font-weight: 1000;
+    font-size: x-large;
+    box-shadow: -5px 10px #6c0286;
+} */
 
 .scroll {
     position: fixed;
@@ -85,7 +138,6 @@ section div a:hover {
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
-
 }
 
 .hidden {

@@ -430,7 +430,7 @@ const controls = new OrbitControls(
 controls.mouseButtons.LEFT = null
 controls.enableDamping = true
 controls.enablePan = false
-controls.minDistance = 1.5
+controls.minDistance = 3.2
 controls.maxDistance = 50
 
 gui.add(
@@ -542,10 +542,11 @@ window.addEventListener(
     {
         scrollY = window.scrollY
         const distance = controls.getDistance()
-        if (distance >= controls.maxDistance || distance <= controls.minDistance) { controls.enableZoom = false }
-        document.getElementById('What').classList.remove("hidden")
-        document.getElementById('Why').classList.remove("hidden")
-        document.getElementById('Club').classList.remove("hidden")
+        if (distance >= controls.maxDistance || distance <= controls.minDistance) { controls.enableZoom = false
+            document.getElementById('What').classList.remove("hidden")
+            document.getElementById('Why').classList.remove("hidden")
+            document.getElementById('Club').classList.remove("hidden")
+        }
     },
     {
         passive: false
