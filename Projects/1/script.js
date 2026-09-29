@@ -184,6 +184,7 @@ scene.add(
 
 
 
+const meshes = []
 fontLoader.load(
     './fonts/helvetiker_regular.typeface.json',
     (font) =>
@@ -239,7 +240,6 @@ fontLoader.load(
         })
 
 
-
         for (let i = 0; i < 500; i++)
         {
             const donut = new THREE.Mesh(
@@ -252,7 +252,7 @@ fontLoader.load(
                 (Math.random() - 0.5) * 50,
                 (Math.random() - 0.5) * 50
             )
-
+            meshes.push(donut)
             donut.rotation.x = Math.random() * Math.PI
             donut.rotation.y = Math.random() * Math.PI
 
@@ -277,7 +277,7 @@ fontLoader.load(
                 (Math.random() - 0.5) * 10,
                 (Math.random() - 0.5) * 50
             )
-
+            meshes.push(cube)
             cube.rotation.x = Math.random() * Math.PI
             cube.rotation.y = Math.random() * Math.PI
 
@@ -306,7 +306,7 @@ fontLoader.load(
                 (Math.random() - 0.5) * 10,
                 (Math.random() - 0.5) * 10
             )
-
+            meshes.push(donut)
             donut.rotation.x = Math.random() * Math.PI
             donut.rotation.y = Math.random() * Math.PI
 
@@ -533,16 +533,67 @@ renderer.setPixelRatio(
 )
 
 
-
-let scrollY = window.scrollY
-
-const wheelListener = (event) => {
-        scrollY = window.scrollY
-        const distance = controls.getDistance()
-        if (distance >= controls.maxDistance || distance <= controls.minDistance) { controls.enableZoom = false
-            document.getElementById('What').classList.remove("hidden")
-            document.getElementById('Why').classList.remove("hidden")
-            document.getElementById('Club').classList.remove("hidden")
+window.addEventListener('mousedown', () => {
+    if (!controls.enableZoom) { return }
+    controls.enableZoom = false
+    document.getElementById("CLICKME").classList.add("hidden")
+    controls.minDistance = 0.0
+    const center = new THREE.Vector3(0, 0, 0);
+    const outwardDuration = 1500;
+    const inwardDuration = 500;
+    const maxDistance = 100;
+    const shrinkDistance = 1;
+    const cameraDistance = 3.3;
+    const cameraStart = camera.position.clone();
+    const cameraDirection = cameraStart.clone().sub(center).normalize();
+    const cameraEnd = center.clone().addScaledVector(cameraDirection, cameraDistance);
+    meshes.forEach(mesh => {
+        const direction = mesh.position.clone().sub(center);
+        if (direction.lengthSq() > 0) { direction.normalize(); }
+        mesh.userData.direction = direction;
+        mesh.userData.originalPosition = mesh.position.clone();
+        mesh.userData.originalScale = mesh.scale.clone();
+    });
+    const startTime = performance.now();
+    function animateMeshes(now) {
+        const elapsed = now - startTime;
+        meshes.forEach(mesh => {
+            const original = mesh.userData.originalPosition;
+            const direction = mesh.userData.direction;
+            const originalScale = mesh.userData.originalScale;
+            if (elapsed < outwardDuration) {
+                const progress = elapsed / outwardDuration;
+                const distance = progress * maxDistance;
+                mesh.position.copy(original).addScaledVector(direction, distance);
+                mesh.scale.copy(originalScale);
+            } else {
+                const inwardElapsed = elapsed - outwardDuration;
+                const progress = Math.min(inwardElapsed / inwardDuration, 1);
+                const outward = original.clone().addScaledVector(direction, maxDistance);
+                const eased = 1 - Math.pow(1 - progress, 8);
+                mesh.position.lerpVectors(outward, center, eased);
+                const distanceFromCenter = mesh.position.distanceTo(center);
+                if (distanceFromCenter < shrinkDistance) {
+                    const shrinkProgress = 1 - (distanceFromCenter / shrinkDistance);
+                    const shrink = Math.pow(shrinkProgress, 3);
+                    mesh.scale.copy(originalScale).multiplyScalar(1 - shrink);
+                } else { mesh.scale.copy(originalScale); }
+            }
+        });
+        if (elapsed >= outwardDuration) {
+            const inwardElapsed = elapsed - outwardDuration;
+            const progress = Math.min(inwardElapsed / inwardDuration, 1
+            );
+            const eased = 1 - Math.pow(1 - progress, 8);
+            camera.position.lerpVectors(cameraStart, cameraEnd, eased);
+            camera.lookAt(center);
+        }
+        if (elapsed < outwardDuration + inwardDuration) { requestAnimationFrame(animateMeshes); }
+        else {
+            meshes.forEach(mesh => {mesh.position.copy(center); mesh.scale.set(0, 0, 0);});
+            camera.position.copy(cameraEnd);
+            camera.lookAt(center);
+            for (let item of document.getElementsByClassName('hidden')) { if (item.id != "CLICKME") { item.classList.remove("hidden") } }
             const timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
             for (let i = 0; i < 40; i++) {
             setTimeout(() => {
@@ -550,10 +601,13 @@ const wheelListener = (event) => {
                 document.getElementById('overlay').style.width = `${100 - (i / 1.2)}%`;
             }, i * 15);
             }
-            window.removeEventListener('wheel', wheelListener)
         }
     }
-window.addEventListener('wheel', wheelListener, { passive: false })
+    requestAnimationFrame(animateMeshes);
+});
+
+
+
 
 
 
