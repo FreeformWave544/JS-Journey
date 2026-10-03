@@ -38,17 +38,53 @@ const mesh3 = new THREE.Mesh(
     material
 )
 
-var date = new Date();
-const firstSession = new Date(2026, 8, 29)
-firstSession.setDate(firstSession.getDate() + 7)
+const $ = id => document.getElementById(id);
+const fmt = d => d.toLocaleDateString('en-GB', { weekday: 'long', day: '2-digit', month: 'long' }).replace(/,?\s+/g, ' / ').toUpperCase();
+const today = new Date(new Date().setHours(0, 0, 0, 0));
 
-while (firstSession < date) {
-    firstSession.setDate(firstSession.getDate() + 7);
-}
+const s1 = new Date(2026, 8, 29);
+do s1.setDate(s1.getDate() + 7); while (s1 < today);
+const s2 = new Date(s1);
+s2.setDate(s2.getDate() + 7);
+const sessions = [s1, s2];
 
-document.getElementById("Date1").innerHTML = firstSession.toLocaleDateString('en-GB', { weekday: 'long', day: '2-digit', month: 'long' }).replace(/,?\s+/g, ' / ').toUpperCase()
-firstSession.setDate(firstSession.getDate() + 7);
-document.getElementById("Date2").innerHTML = firstSession.toLocaleDateString('en-GB', { weekday: 'long', day: '2-digit', month: 'long' }).replace(/,?\s+/g, ' / ').toUpperCase()
+const weekStart = new Date(today);
+weekStart.setDate(today.getDate() - ((today.getDay() + 5) % 7));
+const weekEnd = new Date(weekStart);
+weekEnd.setDate(weekStart.getDate() + 7);
+
+sessions.forEach((d, i) => $(`Date${i + 1}`).textContent = fmt(d));
+
+(async () => {
+  let events;
+  try {
+    events = await (await fetch('/club/calendarEvents.php')).json();
+  } catch (e) {
+    return console.error(e);
+  }
+
+  for (const ev of events) {
+    const [d, m, y] = ev.date.split('/').map(Number);
+    const date = new Date(y, m - 1, d);
+
+    if (ev.title.trim().toLowerCase() === 'project of the week') {
+      if (date < weekStart || date >= weekEnd) continue;
+      const [demo = '', repo = '', ...rest] = ev.description.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+      $('ProjDemo').href = demo;
+      $('ProjDemo').textContent = 'Demo';
+      $('ProjRepo').href = repo;
+      $('ProjRepo').textContent = 'Repo';
+      $('WeekProject').textContent = rest.join(' ');
+      continue;
+    }
+
+    const i = sessions.findIndex(s => s.getTime() === date.getTime()) + 1;
+    if (!i) continue;
+    $(`Title${i}`).textContent = ev.title;
+    $(`Description${i}`).textContent = ev.description;
+    $(`Duration${i}`).lastChild.textContent = `\n${ev.time} ${parseFloat(ev.time) === 1 ? 'hour' : 'hours'}\n`;
+  }
+})();
 
 mesh1.position.set(2, 0, 0)
 mesh2.position.set(-2, -objectsDistance, 0)

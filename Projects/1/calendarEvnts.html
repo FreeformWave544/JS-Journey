@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+</head>
+<body>
+    <h2>Adding Calendar Events</h2>
+    <div id="statusMSG" style="margin-bottom: 15px; font-weight: bold;"></div>
+    <form id="APIForm">
+        <div>
+            <label for="pw">API Password:</label><br />
+            <input type="password" id="pw" required>
+        </div><br />
+        <div>
+            <label for="title">Title:</label><br />
+            <input type="text" id="title" placeholder="E.g. First Meeting" required>
+        </div><br />
+        <div>
+            <label for="description">Description:</label><br />
+            <textarea id="description" placeholder="Enter Event Description..."></textarea>
+        </div><br />
+        <div>
+            <label for="date">Date (DD/MM/YY):</label><br />
+            <input type="text" id="date" placeholder="06/10/2026" required>
+        </div><br />
+        <div>
+            <label for="time">Time (Optional) (hours):</label><br />
+            <input type="text" id="time" placeholder="1">
+        </div><br />
+        <button type="submit">Add Event</button>
+        <button id="viewEvents" type="button" onclick="(async () => document.getElementById('jsonviewer').textContent = JSON.stringify(await (await fetch('/club/calendarEvents.php')).json(), null, 2))();">View Events</button>
+    </form>
+    <pre id="jsonviewer"></pre>
+    <script type="module" src="./form.js"></script>
+</body>
+</html>
