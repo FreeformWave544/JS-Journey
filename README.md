@@ -33,7 +33,7 @@
 ## About the Project
 <p>The Rutlish Terminal Clubsite is a website which introduces Hack Club, and the goal of our club in the first of 3 pages, then how to join and a list of our projects when we make some, and introduces the team of the club. It was made in just CSS, HTML, and ThreeJS to create stunning animations, beautiful visuals, and most of all: Epic 3D.
 On the final page, we have a calendar which displays what we'll be doing next session and the session after that, but also importantly: the project of the week! This reads from a JSON that I can easily update all the information.<br />
-This project has been a blast to make, and has taught me so much about website. 10/10 would do again.</p>
+This project has been a blast to make, and has taught me so much about websites. 10/10 would do again.</p>
 
 <!-- Features -->
 ### Features
