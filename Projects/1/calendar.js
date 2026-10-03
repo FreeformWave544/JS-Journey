@@ -56,33 +56,28 @@ weekEnd.setDate(weekStart.getDate() + 7);
 sessions.forEach((d, i) => $(`Date${i + 1}`).textContent = fmt(d));
 
 (async () => {
-  let events;
-  try {
-    events = await (await fetch('/club/calendarEvents.php')).json();
-  } catch (e) {
-    return console.error(e);
-  }
+    let events;
+    try { events = await (await fetch('/club/calendarEvents.php')).json(); } catch (e) { return console.error(e); }
+    for (const ev of events) {
+        const [d, m, y] = ev.date.split('/').map(Number);
+        const date = new Date(y, m - 1, d);
 
-  for (const ev of events) {
-    const [d, m, y] = ev.date.split('/').map(Number);
-    const date = new Date(y, m - 1, d);
-
-    if (ev.title.trim().toLowerCase() === 'project of the week') {
-      if (date < weekStart || date >= weekEnd) continue;
-      const [demo = '', repo = '', ...rest] = ev.description.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-      $('ProjDemo').href = demo;
-      $('ProjDemo').textContent = 'Demo';
-      $('ProjRepo').href = repo;
-      $('ProjRepo').textContent = 'Repo';
-      $('WeekProject').textContent = rest.join(' ');
-      continue;
-    }
-
-    const i = sessions.findIndex(s => s.getTime() === date.getTime()) + 1;
-    if (!i) continue;
-    $(`Title${i}`).textContent = ev.title;
-    $(`Description${i}`).textContent = ev.description;
-    $(`Duration${i}`).lastChild.textContent = `\n${ev.time} ${parseFloat(ev.time) === 1 ? 'hour' : 'hours'}\n`;
+        if (ev.title.trim().toLowerCase() === 'project of the week') {
+            if (date < weekStart || date >= weekEnd) continue;
+            const [title = '', demo = '', repo = '', ...rest] = ev.description.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+            $('WeekProject').textContent = title
+            $('ProjDemo').href = demo;
+            $('ProjDemo').textContent = 'Demo';
+            $('ProjRepo').href = repo;
+            $('ProjRepo').textContent = 'Repo';
+            $('ProjDesc').textContent = rest.join(' ');
+            continue;
+        }
+        const i = sessions.findIndex(s => s.getTime() === date.getTime()) + 1;
+        if (!i) continue;
+        $(`Title${i}`).textContent = ev.title;
+        $(`Description${i}`).textContent = ev.description;
+        $(`Duration${i}`).lastChild.textContent = `\n${ev.time} ${parseFloat(ev.time) === 1 ? 'hour' : 'hours'}\n`;
   }
 })();
 
